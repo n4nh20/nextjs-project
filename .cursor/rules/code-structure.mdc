@@ -1,0 +1,40 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Code Structure Guidelines
+
+## Component Organization
+
+Components should follow these guidelines:
+- Client Components should be marked with `'use client'` directive at the top
+- Server Components are the default in App Router
+- Component files should be named using PascalCase
+
+## Directory Structure
+
+For clarity and maintainability, the project should follow this structure:
+
+```
+frontend/src/
+├── app/               # App Router pages and layouts
+│   ├── api/           # API routes
+│   ├── (routes)/      # Route groups
+│   ├── layout.tsx     # Root layout
+│   └── page.tsx       # Home page
+├── components/        # Reusable UI components
+│   ├── ui/            # Basic UI components
+│   └── features/      # Feature-specific components
+├── lib/               # Utility functions and shared code
+├── models/            # Data models and schemas
+├── hooks/             # Custom React hooks
+└── styles/            # Custom style definitions
+```
+
+## File Naming Conventions
+
+- React components: `ComponentName.tsx`
+- Utility functions: `util-name.ts`
+- React hooks: `useHookName.ts`
+- API routes: `route.ts` within appropriate folders
