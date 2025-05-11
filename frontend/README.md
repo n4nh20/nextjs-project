@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextJS + TailwindCSS + MongoDB Project
 
-## Getting Started
+Dự án web hiện đại sử dụng:
+- NextJS cho framework frontend
+- TailwindCSS cho styling
+- MongoDB cho cơ sở dữ liệu
 
-First, run the development server:
+## Tính năng
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Sử dụng Next.js App Router
+- Styling với TailwindCSS 4.0
+- Kết nối và tương tác với MongoDB
+- API Routes cho backend
+
+## Cài đặt
+
+1. Clone dự án
+   ```bash
+   git clone <repository-url>
+   cd nextjs-project
+   ```
+
+2. Cài đặt dependencies
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+3. Thiết lập biến môi trường
+   ```bash
+   cp src/env.example .env.local
+   ```
+   Sau đó chỉnh sửa file `.env.local` với thông tin của bạn.
+
+## Chạy dự án
+
+1. Chạy dự án ở chế độ development
+   ```bash
+   npm run dev
+   ```
+   
+   Truy cập [http://localhost:3000](http://localhost:3000) để xem dự án.
+
+2. Build dự án
+   ```bash
+   npm run build
+   ```
+
+3. Chạy dự án ở chế độ production
+   ```bash
+   npm start
+   ```
+
+## Cấu trúc dự án
+
+```
+src/
+├── app/               # App Router pages và layouts
+│   ├── api/           # API routes
+│   ├── layout.tsx     # Root layout
+│   └── page.tsx       # Trang chủ
+├── components/        # UI components có thể tái sử dụng
+│   ├── ui/            # Basic UI components
+│   └── features/      # Feature-specific components
+├── lib/               # Utility functions và shared code
+├── models/            # Data models và schemas
+├── hooks/             # Custom React hooks
+└── styles/            # Custom style definitions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Làm việc với API
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### API Routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `GET /api/users` - Lấy danh sách người dùng
+- `POST /api/users` - Tạo người dùng mới
+- `GET /api/users/[id]` - Lấy thông tin của một người dùng
+- `PUT /api/users/[id]` - Cập nhật thông tin người dùng
+- `DELETE /api/users/[id]` - Xóa người dùng
 
-## Learn More
+## Công nghệ sử dụng
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Giấy phép
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
