@@ -57,10 +57,10 @@ export async function POST(request: NextRequest) {
     const user = await User.create(body);
 
     return NextResponse.json({ success: true, data: user }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Lỗi khi tạo người dùng:", error);
 
-    if (error.name === "ValidationError") {
+    if (error instanceof Error && error.name === "ValidationError") {
       return NextResponse.json(
         { success: false, message: error.message },
         { status: 400 }

@@ -40,12 +40,13 @@ export async function GET(
     const user = await getUserById(params.id);
 
     return NextResponse.json({ success: true, data: user }, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Lỗi khi lấy thông tin người dùng:", error);
 
     if (
-      error.message === "ID người dùng không hợp lệ" ||
-      error.message === "Không tìm thấy người dùng"
+      error instanceof Error &&
+      (error.message === "ID người dùng không hợp lệ" ||
+        error.message === "Không tìm thấy người dùng")
     ) {
       return NextResponse.json(
         { success: false, message: error.message },
@@ -80,24 +81,26 @@ export async function PUT(
     await user.save();
 
     return NextResponse.json({ success: true, data: user }, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Lỗi khi cập nhật người dùng:", error);
 
-    if (error.name === "ValidationError") {
-      return NextResponse.json(
-        { success: false, message: error.message },
-        { status: 400 }
-      );
-    }
+    if (error instanceof Error) {
+      if (error.name === "ValidationError") {
+        return NextResponse.json(
+          { success: false, message: error.message },
+          { status: 400 }
+        );
+      }
 
-    if (
-      error.message === "ID người dùng không hợp lệ" ||
-      error.message === "Không tìm thấy người dùng"
-    ) {
-      return NextResponse.json(
-        { success: false, message: error.message },
-        { status: 404 }
-      );
+      if (
+        error.message === "ID người dùng không hợp lệ" ||
+        error.message === "Không tìm thấy người dùng"
+      ) {
+        return NextResponse.json(
+          { success: false, message: error.message },
+          { status: 404 }
+        );
+      }
     }
 
     return NextResponse.json(
@@ -121,12 +124,13 @@ export async function DELETE(
       { success: true, message: "Người dùng đã được xóa thành công" },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Lỗi khi xóa người dùng:", error);
 
     if (
-      error.message === "ID người dùng không hợp lệ" ||
-      error.message === "Không tìm thấy người dùng"
+      error instanceof Error &&
+      (error.message === "ID người dùng không hợp lệ" ||
+        error.message === "Không tìm thấy người dùng")
     ) {
       return NextResponse.json(
         { success: false, message: error.message },
