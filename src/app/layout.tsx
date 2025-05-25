@@ -5,7 +5,6 @@ import { MainLayout } from "@/components/layouts/MainLayout";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/providers";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi" className="dark">
+    <html lang="vi" className="dark" suppressHydrationWarning>
       <body className={cn(inter.className, "bg-background text-foreground")}>
         <Providers>
           <MainLayout>{children}</MainLayout>

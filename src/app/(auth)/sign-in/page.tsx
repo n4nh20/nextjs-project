@@ -1,15 +1,18 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { getServerSession } from "next-auth/next";
 import { signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
 
-export default async function SignInPage() {
-  const session = await getServerSession();
-  if (session) {
-    redirect("/");
-  }
+export default function SignInPage() {
+  const handleSignIn = async (provider: "github" | "google") => {
+    try {
+      await signIn(provider, { callbackUrl: "/" });
+    } catch (error) {
+      console.error("Lỗi đăng nhập:", error);
+    }
+  };
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center">
@@ -21,7 +24,7 @@ export default async function SignInPage() {
           <Button
             className="w-full"
             variant="outline"
-            onClick={() => signIn("github")}
+            onClick={() => handleSignIn("github")}
           >
             <GitHubLogoIcon className="mr-2 h-5 w-5" />
             Đăng nhập với GitHub
@@ -29,7 +32,7 @@ export default async function SignInPage() {
           <Button
             className="w-full"
             variant="outline"
-            onClick={() => signIn("google")}
+            onClick={() => handleSignIn("google")}
           >
             <svg
               className="mr-2 h-5 w-5"
